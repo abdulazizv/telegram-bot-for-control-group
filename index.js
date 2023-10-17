@@ -25,7 +25,7 @@ bot.on('text',(ctx) => {
         ctx.deleteMessage(messageId,chatId)
         .then(() => {
             if(username) {
-                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: ${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`);
+                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`);
                 ctx.replyWithHTML(`✋Salom, @${username}! Xabaringiz o'chirildi 📩\n\n  ✍️ Siz bu guruhga emas adminga yozing😊`);
             } else {
                 ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: ${firstName}\n\n 🕧<b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`)
