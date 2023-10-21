@@ -26,17 +26,17 @@ bot.on('text',(ctx) => {
         .then(() => {
             if(username) {
                 ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`);
-                ctx.replyWithHTML(`✋Salom, @${username}! Xabaringiz o'chirildi 📩\n\n  ✍️ Siz bu guruhga emas adminga yozing😊`);
+                ctx.replyWithHTML(`✋Salom, @${username}! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             } else {
                 ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: ${firstName}\n\n 🕧<b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`)
-                ctx.replyWithHTML(`✋Salom, <b>${firstName}!</b> Xabaringiz o'chirildi 📩\n\n  ✍️ Siz bu guruhga emas adminga yozing😊`);
+                ctx.replyWithHTML(`✋Salom, <b>${firstName}!</b> Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             }
         })
     }
 })
 
-bot.startPolling().then(() => {
-    console.log('Bot started polling successfully.');
-    }).catch((error) => {
-    console.error('Error starting polling:', error);
-});
+bot.launch().then(() => {
+    console.log('Bot started');
+  }).catch((error) => {
+    console.error('Error starting bot', error);
+  });
