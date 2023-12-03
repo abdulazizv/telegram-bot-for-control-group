@@ -37,6 +37,6 @@ bot.on('text',(ctx) => {
 
 bot.launch().then(() => {
     console.log('Bot started');
-  }).catch((error) => {
+}).catch((error) => {
     console.error('Error starting bot', error);
-  });
+});
