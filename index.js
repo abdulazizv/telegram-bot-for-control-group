@@ -4,7 +4,7 @@ const config = require("config")
 const token = config.get("token")
 const adminId = config.get("adminId")
 const bot = new Telegraf(token);
-const groupId = -4058010574;
+const groupId = -4583948804;
 bot.command('start',(ctx) => {
     const user = ctx.message.from;
     if(ctx.from.id == adminId) {
@@ -21,7 +21,8 @@ bot.on('text',(ctx) => {
     const chatId = ctx.message.chat.id;
     const msg = ctx.message.text;
     const firstName = ctx.message.from.first_name;
-    if(msg && ctx.from.id !== adminId) {
+    console.log(ctx.message.chat.id)
+    if(msg && ctx.from.id !== adminId && ctx.message.chat.id != groupId) {
         ctx.deleteMessage(messageId,chatId)
         .then(() => {
             if(username) {
@@ -31,7 +32,7 @@ bot.on('text',(ctx) => {
                 ctx.telegram.sendMessage(groupId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`, {
                     parse_mode: 'HTML'
                 })
-                ctx.replyWithHTML(`✋Salom, @${firstName}! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
+                ctx.replyWithHTML(`✋Salom, hurmatli mijoz! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             } else {
                 console.log(ctx.message.from)
                 const mentionMessage = `👤 **Foydalanuvchi**: [${firstName}](tg://user?id=${ctx.message.from.id}) \n 🕧 **Yozilgan vaqti**: ${messageDate}\n\n 📜**tekst**: ${msg}`;
@@ -41,7 +42,7 @@ bot.on('text',(ctx) => {
                 ctx.telegram.sendMessage(groupId, mentionMessage, {
                     parse_mode: 'Markdown'
                 })
-                ctx.replyWithHTML(`✋Salom, <b>${firstName}!</b> Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
+                ctx.replyWithHTML(`✋Salom, <b>hurmatli mijoz!</b> Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             }
         })
     }
