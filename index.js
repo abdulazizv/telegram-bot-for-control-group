@@ -31,7 +31,7 @@ bot.on('text',(ctx) => {
                 ctx.telegram.sendMessage(groupId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`, {
                     parse_mode: 'HTML'
                 })
-                ctx.replyWithHTML(`✋Salom, @${username}! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
+                ctx.replyWithHTML(`✋Salom, @${firstName}! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             } else {
                 console.log(ctx.message.from)
                 const mentionMessage = `👤 **Foydalanuvchi**: [${firstName}](tg://user?id=${ctx.message.from.id}) \n 🕧 **Yozilgan vaqti**: ${messageDate}\n\n 📜**tekst**: ${msg}`;
