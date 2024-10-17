@@ -4,7 +4,7 @@ const config = require("config")
 const token = config.get("token")
 const adminId = config.get("adminId")
 const bot = new Telegraf(token);
-
+const groupId = -4058010574;
 bot.command('start',(ctx) => {
     const user = ctx.message.from;
     if(ctx.from.id == adminId) {
@@ -13,7 +13,6 @@ bot.command('start',(ctx) => {
 })
 
 bot.on('text',(ctx) => {
-    const groupId = ctx.message.chat.id;
     const user = ctx.message.from;
     const timestamp = ctx.message.date;
     const messageDate = new Date(timestamp * 1000)
