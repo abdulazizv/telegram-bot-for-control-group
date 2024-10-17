@@ -13,6 +13,7 @@ bot.command('start',(ctx) => {
 })
 
 bot.on('text',(ctx) => {
+    const groupId = ctx.message.chat.id;
     const user = ctx.message.from;
     const timestamp = ctx.message.date;
     const messageDate = new Date(timestamp * 1000)
@@ -25,10 +26,22 @@ bot.on('text',(ctx) => {
         ctx.deleteMessage(messageId,chatId)
         .then(() => {
             if(username) {
-                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`);
+                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`,{
+                    parse_mode: 'HTML'
+                });
+                ctx.telegram.sendMessage(groupId, `👤 <b>Foydalanuvchi</b>: @${username}\n🕧 <b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`, {
+                    parse_mode: 'HTML'
+                })
                 ctx.replyWithHTML(`✋Salom, @${username}! Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             } else {
-                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: ${firstName}\n\n 🕧<b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`)
+                console.log(ctx.message.from)
+                const mentionMessage = `👤 **Foydalanuvchi**: [${firstName}](tg://user?id=${ctx.message.from.id}) \n 🕧 **Yozilgan vaqti**: ${messageDate}\n\n 📜**tekst**: ${msg}`;
+                ctx.telegram.sendMessage(adminId, `👤 <b>Foydalanuvchi</b>: ${firstName}\n\n 🕧<b>Yozilgan vaqti</b>: ${messageDate}\n\n\n 📜 <b>tekst</b>: ${msg}`, {
+                    parse_mode:'HTML'
+                })
+                ctx.telegram.sendMessage(groupId, mentionMessage, {
+                    parse_mode: 'Markdown'
+                })
                 ctx.replyWithHTML(`✋Salom, <b>${firstName}!</b> Xabaringiz o'chirildi 📩\n\n  ✍️Adminlarning o'zi sizga yozishadi 😊`);
             }
         })
